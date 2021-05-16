@@ -95,7 +95,7 @@ def main():
         for (x, y, mask) in tqdm(test_dataloader, '| feature extraction | test | %s |' % class_name):
             test_imgs.extend(x.cpu().detach().numpy())
             gt_list.extend(y.cpu().detach().numpy())
-            gt_mask_list.extend(mask.cpu().detach().numpy()[1, :, :])
+            gt_mask_list.extend(mask.cpu().detach().numpy())
             # model prediction
             with torch.no_grad():
                 pred = model(x.to(device))

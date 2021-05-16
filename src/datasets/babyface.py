@@ -34,6 +34,7 @@ class BabyFaceDataset(Dataset):
                                                   std=[0.229, 0.224, 0.225])])
         self.transform_mask = T.Compose([T.Resize(resize, Image.NEAREST),
                                          T.CenterCrop(cropsize),
+                                         T.Grayscale(1),
                                          T.ToTensor()])
 
     def __getitem__(self, idx):
