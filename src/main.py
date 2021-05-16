@@ -152,15 +152,15 @@ def main():
             score_map = gaussian_filter(score_map.squeeze().cpu().detach().numpy(), sigma=4)
             score_map_list.append(score_map)
 
-        flatten_gt_mask_list = np.concatenate(gt_mask_list).ravel()
+        flatten_gt_mask_list = np.concatenate(gt_mask_list).ravel().astype(int)
         flatten_score_map_list = np.concatenate(score_map_list).ravel()
 
         # calculate per-pixel level ROCAUC
-        # fpr, tpr, _ = roc_curve(flatten_gt_mask_list, flatten_score_map_list)
-        # per_pixel_rocauc = roc_auc_score(flatten_gt_mask_list, flatten_score_map_list)
-        # total_pixel_roc_auc.append(per_pixel_rocauc)
-        # print('%s pixel ROCAUC: %.3f' % (class_name, per_pixel_rocauc))
-        # fig_pixel_rocauc.plot(fpr, tpr, label='%s ROCAUC: %.3f' % (class_name, per_pixel_rocauc))
+        fpr, tpr, _ = roc_curve(flatten_gt_mask_list, flatten_score_map_list)
+        per_pixel_rocauc = roc_auc_score(flatten_gt_mask_list, flatten_score_map_list)
+        total_pixel_roc_auc.append(per_pixel_rocauc)
+        print('%s pixel ROCAUC: %.3f' % (class_name, per_pixel_rocauc))
+        fig_pixel_rocauc.plot(fpr, tpr, label='%s ROCAUC: %.3f' % (class_name, per_pixel_rocauc))
 
         # get optimal threshold
         precision, recall, thresholds = precision_recall_curve(flatten_gt_mask_list, flatten_score_map_list)
