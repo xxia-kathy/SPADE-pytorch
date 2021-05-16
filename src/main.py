@@ -170,7 +170,7 @@ def main():
         threshold = thresholds[np.argmax(f1)]
 
         # visualize localization result
-        visualize_loc_result(test_imgs, gt_mask_list, score_map_list, threshold, args.save_path, class_name, vis_num=5)
+        visualize_loc_result(test_imgs, gt_mask_list, score_map_list, threshold, args.save_path, class_name, vis_num=20)
 
     print('Average ROCAUC: %.3f' % np.mean(total_roc_auc))
     fig_img_rocauc.title.set_text('Average image ROCAUC: %.3f' % np.mean(total_roc_auc))
