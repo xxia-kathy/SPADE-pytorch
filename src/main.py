@@ -55,11 +55,11 @@ def main():
     total_roc_auc = []
     total_pixel_roc_auc = []
 
-    for class_name in mvtec.CLASS_NAMES:
+    for class_name in babyface.CLASS_NAMES:
 
-        train_dataset = mvtec.BabyFaceDataset(class_name=class_name, is_train=True)
+        train_dataset = babyface.BabyFaceDataset(class_name=class_name, is_train=True)
         train_dataloader = DataLoader(train_dataset, batch_size=8, pin_memory=True)
-        test_dataset = mvtec.BabyFaceDataset(class_name=class_name, is_train=False)
+        test_dataset = babyface.BabyFaceDataset(class_name=class_name, is_train=False)
         test_dataloader = DataLoader(test_dataset, batch_size=8, pin_memory=True)
 
         train_outputs = OrderedDict([('layer1', []), ('layer2', []), ('layer3', []), ('avgpool', [])])
