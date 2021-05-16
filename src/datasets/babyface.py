@@ -14,7 +14,7 @@ CLASS_NAMES = ['baby_face']
 
 class BabyFaceDataset(Dataset):
     def __init__(self, root_path='../data', class_name='baby_face', is_train=True,
-                 resize=256, cropsize=256):
+                 resize=256, cropsize=224):
         assert class_name in CLASS_NAMES, 'class_name: {}, should be in {}'.format(class_name, CLASS_NAMES)
         self.root_path = root_path
         self.class_name = class_name
