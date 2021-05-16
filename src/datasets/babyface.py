@@ -21,7 +21,7 @@ class BabyFaceDataset(Dataset):
         self.is_train = is_train
         self.resize = resize
         self.cropsize = cropsize
-        self.mvtec_folder_path = os.path.join(root_path, 'baby_face')
+        self.mvtec_folder_path = root_path
 
         # load dataset
         self.x, self.y, self.mask = self.load_dataset_folder()
