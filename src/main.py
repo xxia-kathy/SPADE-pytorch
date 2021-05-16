@@ -152,7 +152,7 @@ def main():
             score_map = gaussian_filter(score_map.squeeze().cpu().detach().numpy(), sigma=4)
             score_map_list.append(score_map)
 
-        flatten_gt_mask_list = np.concatenate(gt_mask_list).ravel().astype(int)
+        flatten_gt_mask_list = np.concatenate(gt_mask_list.astype(int)).ravel()
         flatten_score_map_list = np.concatenate(score_map_list).ravel()
 
         # calculate per-pixel level ROCAUC
